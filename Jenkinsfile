@@ -74,7 +74,6 @@ pipeline {
             }
         }
 
-
         stage('Deploy App') {
             when {
                 allOf {
