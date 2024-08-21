@@ -1,5 +1,4 @@
 pipeline {
-
     agent {
         kubernetes {
             yaml '''
@@ -7,8 +6,8 @@ pipeline {
                 kind: Pod
                 spec:
                   containers:
-                  - name: busybox
-                    image: busybox
+                  - name: maven
+                    image: maven:3.8.4-openjdk-17
                     command:
                     - cat
                     tty: true
