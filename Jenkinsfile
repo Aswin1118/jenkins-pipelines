@@ -73,7 +73,7 @@ pipeline {
 
         stage('Deploy App') {
             when {
-                changeRequest target: 'main'
+                branch 'production'
             }
             steps {
                 sh """
