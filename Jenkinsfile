@@ -7,8 +7,8 @@ pipeline {
                 kind: Pod
                 spec:
                   containers:
-                  - name: maven
-                    image: maven:3.8.4-openjdk-17
+                  - name: busybox
+                    image: busybox
                     command:
                     - cat
                     tty: true
@@ -61,6 +61,9 @@ pipeline {
         }
 
         stage('Build Code') {
+            when {
+                branch 'production'
+            }
             steps {
                 sh """
                 echo "Building Artifact"
@@ -69,6 +72,9 @@ pipeline {
         }
 
         stage('Deploy App') {
+            when {
+                changeRequest target: 'main'
+            }
             steps {
                 sh """
                 echo "Deploying Code"
