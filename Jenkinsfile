@@ -62,7 +62,9 @@ pipeline {
 
         stage('Build Code') {
             when {
-                branch 'production'
+                allOf {
+                    changeRequest target: 'main'
+                }
             }
             steps {
                 sh """
