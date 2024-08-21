@@ -62,7 +62,8 @@ pipeline {
 
         stage('Build Code') {
             when {
-                allOf {
+                anyOf {
+                    branch 'main'
                     changeRequest target: 'main'
                 }
             }
@@ -72,6 +73,7 @@ pipeline {
                 """
             }
         }
+
 
         stage('Deploy App') {
             when {
